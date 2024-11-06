@@ -4,5 +4,3 @@ resources:
   - release.yaml
   - release-full.yaml # Dashboard
   - dashboard-rbac.yaml
-  - route.yaml
-  # - work/
