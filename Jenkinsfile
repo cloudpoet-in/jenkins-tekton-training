@@ -5,11 +5,13 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                pwd
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
+                ls
             }
         }
         stage('Deploy') {
