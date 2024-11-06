@@ -4,12 +4,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..' && pwd
+                pwd
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..' && ls
+                ls
             }
         }
         stage('Deploy') {
