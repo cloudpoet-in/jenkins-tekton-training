@@ -4,12 +4,16 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                pwd
+                script {
+                    sh 'pwd'
+                }
             }
         }
         stage('Test') {
             steps {
-                ls
+                script {
+                    sh 'ls'
+                }
             }
         }
         stage('Deploy') {
