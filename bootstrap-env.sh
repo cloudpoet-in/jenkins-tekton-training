@@ -23,5 +23,4 @@ sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plug
 chmod +x ./kind
 sudo mv ./kind /usr/local/bin/kind
 
-
-sudo snap install kubectl
+sudo snap install kubectl --classic
