@@ -1,0 +1,46 @@
+pipeline {
+    agent any
+    
+    environment {
+        APP_ENV = 'development'
+        DEPLOY_DIR = '/path/to/deploy'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo "Building for environment: ${APP_ENV}"
+                script {
+                    sh 'pwd'
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "Listing the directory contents"
+                script {
+                    sh 'ls'
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo "Deploying to ${DEPLOY_DIR}...."
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'This will always run'
+        }
+        success {
+            echo 'This will run only if all stages pass'
+            // mail bcc: '', body: "Build Successful", cc: '', from: '', replyTo: '', subject: 'Build Success', to: 'your-email@example.com'
+        }
+        failure {
+            echo 'This will run only if any stage fails'
+            // mail bcc: '', body: "Build Failed", cc: '', from: '', replyTo: '', subject: 'Build Failure', to: 'your-email@example.com'
+        }
+    }
+}

@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'DEPLOY_TARGET', defaultValue: 'staging', description: 'Target environment to deploy to')
+    }
+
+    environment {
+        APP_ENV = 'development'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo "Building for environment: ${APP_ENV}"
+                script {
+                    sh 'pwd'
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "Listing the directory contents"
+                script {
+                    sh 'ls'
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo "Deploying to ${params.DEPLOY_TARGET} environment...."
+            }
+        }
+    }
+ }
