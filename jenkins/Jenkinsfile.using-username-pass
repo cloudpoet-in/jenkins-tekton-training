@@ -28,7 +28,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'db-credentials', usernameVariable: 'DB_USER', passwordVariable: 'DB_PASS')]) {
                         // Example operation: connecting to the database
                         sh """
-                            echo "Connecting to database with user $DB_USER"
+                            echo "Connecting to database with user $DB_USER and password $DB_PASS"
                             # Example command using username and password
                             # Replace the following line with an actual database command like:
                             # mysql -u $DB_USER -p$DB_PASS -e 'SHOW DATABASES;'
