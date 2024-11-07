@@ -12,7 +12,7 @@ pipeline {
                 // Simulate a build process
                 sh 'pwd'
                 sh 'ls'
-                sh 'test.sh'
+                sh './test.sh'
             }
         }
 
