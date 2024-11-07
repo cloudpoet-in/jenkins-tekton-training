@@ -22,4 +22,13 @@ pipeline {
             }
         }
     }
+
+    
+     post {
+         always {
+             script {
+                 slackSend channel: 'jenkins-alert', message: "started ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", teamDomain: 'analytiqs', tokenCredentialId: 'slack'
+             }
+         }  
+     }
 }
