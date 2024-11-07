@@ -1,0 +1,86 @@
+pipeline {
+    agent any
+
+    environment {
+        APP_LANGUAGE = 'Java'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo "Building the ${APP_LANGUAGE} application"
+                // Simulate a build task
+                sh 'echo "Compiling source code..."'
+                sh 'sleep 5' // Dummy wait to simulate build time
+            }
+        }
+
+        stage('Parallel Test Execution') {
+            parallel {
+                stage('Unit Tests') {
+                    steps {
+                        echo 'Running Unit Tests...'
+                        // Simulate unit testing
+                        sh 'sleep 3' // Dummy wait
+                        // Capture the test results
+                        script {
+                            echo 'Unit Tests - Passed'
+                        }
+                    }
+                }
+
+                stage('Integration Tests') {
+                    steps {
+                        echo 'Running Integration Tests...'
+                        // Simulate integration testing
+                        sh 'sleep 5' // Dummy wait
+                        // Capture the test results
+                        script {
+                            echo 'Integration Tests - Passed'
+                        }
+                    }
+                }
+
+                stage('UI Tests') {
+                    steps {
+                        echo 'Running UI Tests...'
+                        // Simulate UI testing
+                        sh 'sleep 7' // Dummy wait
+                        // Capture the test results
+                        script {
+                            echo 'UI Tests - Passed'
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying the application...'
+                // Simulate a deployment process
+                sh 'sleep 2' // Dummy wait to simulate deployment time
+            }
+        }
+
+        stage('Archive Artifacts') {
+            steps {
+                echo 'Archiving build artifacts...'
+                // Simulate archiving artifacts
+                sh 'echo "Archiving..."'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'This always runs, regardless of the pipeline outcome'
+        }
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed. Check logs for details.'
+        }
+    }
+}
