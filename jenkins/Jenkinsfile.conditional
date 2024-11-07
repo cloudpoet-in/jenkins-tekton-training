@@ -10,7 +10,8 @@ pipeline {
             steps {
                 echo 'Building...'
                 // Simulate a build process
-                sh 'sleep 3'
+                sh 'pwd'
+                sh 'ls'
             }
         }
 
