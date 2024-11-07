@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    
+    environment {
+        DEPLOY_ENV = 'staging'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                // Simulate a build process
+                sh 'sleep 3'
+            }
+        }
+
+        stage('Conditional Deployment') {
+            steps {
+                script {
+                    if (env.DEPLOY_ENV == 'production') {
+                        echo 'Deploying to production...'
+                        // Simulate deployment
+                        sh 'sleep 2'
+                    } else {
+                        echo 'Deploying to staging environment...'
+                    }
+                }
+            }
+        }
+    }
+}
