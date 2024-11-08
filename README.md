@@ -4,6 +4,10 @@
 ## Step 1
 Clone this repo
 
+```
+git clone https://github.com/cloudpoet-in/jenkins-tekton-training.git
+```
+
 ## Step 2
 Run the bootstrap.env command as root user to setup environment using
 
