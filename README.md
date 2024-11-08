@@ -29,7 +29,7 @@ docker logs jenkins
 ```
 
 ## Step 4
-Install kubernetes cluster
+Install kubernetes cluster from root of the repository
 
 ```
 kind create cluster --config kind-cluster/config.yaml
