@@ -1,0 +1,64 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: prepare-files
+spec:
+  workspaces:
+    - name: shared-workspace
+  steps:
+    - name: write
+      image: ubuntu
+      script: |
+        echo "Sample text" > /workspace/shared-workspace/sample.txt
+---
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: consume-files
+spec:
+  workspaces:
+    - name: shared-workspace
+  steps:
+    - name: read
+      image: ubuntu
+      script: |
+        cat /workspace/shared-workspace/sample.txt
+---
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: file-sharing-pipeline
+spec:
+  workspaces:
+    - name: shared-workspace
+  tasks:
+    - name: prepare
+      taskRef:
+        name: prepare-files
+      workspaces:
+        - name: shared-workspace
+          workspace: shared-workspace
+    - name: consume
+      taskRef:
+        name: consume-files
+      runAfter:
+        - prepare
+      workspaces:
+        - name: shared-workspace
+          workspace: shared-workspace
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  name: file-sharing-pipeline-run
+spec:
+  pipelineRef:
+    name: file-sharing-pipeline
+  workspaces:
+    - name: shared-workspace
+      volumeClaimTemplate:
+        spec:
+          accessModes: [ "ReadWriteOnce" ]
+          resources:
+            requests:
+              storage: 1Gi

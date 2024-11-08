@@ -1,0 +1,35 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: print-message
+spec:
+  steps:
+    - name: echo
+      image: ubuntu
+      script: |
+        echo "This is the first task running."
+---
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: print-another-message
+spec:
+  steps:
+    - name: echo
+      image: ubuntu
+      script: |
+        echo "This is the second task running in parallel."
+---
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: example-pipeline
+spec:
+  tasks:
+    - name: run-message-task
+      taskRef:
+        name: print-message
+
+    - name: run-another-message-task
+      taskRef:
+        name: print-another-message
