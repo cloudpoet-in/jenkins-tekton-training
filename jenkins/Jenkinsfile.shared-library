@@ -1,0 +1,10 @@
+@Library(jenkins-Library) _
+pipeline {
+    agent any
+    stages {
+        stage('step1') {
+            steps {
+                helloWorld('Class','Thrusday')
+            }
+        }
+}
