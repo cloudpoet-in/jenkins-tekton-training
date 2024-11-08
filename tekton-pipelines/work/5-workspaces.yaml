@@ -71,19 +71,3 @@ spec:
       workspaces:
         - name: shared-workspace
           workspace: shared-workspace
----
-apiVersion: tekton.dev/v1
-kind: PipelineRun
-metadata:
-  name: file-sharing-pipeline-run
-spec:
-  pipelineRef:
-    name: file-sharing-pipeline
-  workspaces:
-    - name: shared-workspace
-      volumeClaimTemplate:
-        spec:
-          accessModes: [ "ReadWriteOnce" ]
-          resources:
-            requests:
-              storage: 1Gi
