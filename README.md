@@ -28,10 +28,23 @@ View the password in logs
 docker logs jenkins
 ```
 
+Stop jenkins using
+```
+docker compose down
+```
+
 ## Step 4
 Install kubernetes cluster from root of the repository
 
 ```
 kind create cluster --config kind-cluster/config.yaml
+# Verify
+kubectl get node
+```
+
+## Step 5
+Install tekton pipelines and dashboard
+```
+kubectl apply -k tekton-pipelines/
 ```
 
